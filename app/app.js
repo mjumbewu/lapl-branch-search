@@ -4,7 +4,7 @@ let selectedDays = new Set();
 let selectedAmenities = new Set();
 let allAvailableAmenities = new Set();
 let map;
-let markers = [];
+let markerMap = new Map();
 
 const DOM = {
     loading: document.getElementById('loading'),
@@ -135,8 +135,8 @@ function applyFilters() {
 }
 
 function renderMapMarkers() {
-    markers.forEach(m => m.remove());
-    markers = [];
+    markerMap.forEach(m => m.remove());
+    markerMap.clear();
 
     filteredLibraries.forEach(lib => {
         if (lib.lat && lib.lng) {
@@ -148,7 +148,17 @@ function renderMapMarkers() {
                 .setPopup(popup)
                 .addTo(map);
                 
-            markers.push(marker);
+            marker.getElement().addEventListener('click', () => {
+                const li = document.getElementById(`branch-card-${lib.name.replace(/\W+/g, '-')}`);
+                if (li) {
+                    li.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    li.classList.remove('highlight-flash');
+                    void li.offsetWidth; // trigger reflow
+                    li.classList.add('highlight-flash');
+                }
+            });
+                
+            markerMap.set(lib.name, marker);
         }
     });
 }
@@ -174,6 +184,17 @@ function renderList() {
     filteredLibraries.forEach(lib => {
         const li = document.createElement('li');
         li.className = 'branch-card';
+        li.id = `branch-card-${lib.name.replace(/\W+/g, '-')}`;
+        
+        li.addEventListener('click', () => {
+            if (lib.lat && lib.lng) {
+                map.flyTo({ center: [lib.lng, lib.lat], zoom: 14 });
+                const marker = markerMap.get(lib.name);
+                if (marker && !marker.getPopup().isOpen()) {
+                    marker.togglePopup();
+                }
+            }
+        });
         
         let hoursHtml = '';
         if (lib.hours) {

@@ -224,6 +224,16 @@ ul#branch-list {
 .branch-card:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
+    cursor: pointer;
+}
+
+@keyframes highlightFlash {
+    0% { background-color: #fef08a; border-color: #eab308; transform: scale(1.02); }
+    100% { background-color: var(--card-bg); border-color: var(--border); transform: scale(1); }
+}
+
+.highlight-flash {
+    animation: highlightFlash 1.5s ease-out;
 }
 
 .branch-header {

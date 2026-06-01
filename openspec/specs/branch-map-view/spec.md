@@ -12,6 +12,12 @@ The system SHALL display an interactive map with markers corresponding to the av
 - **WHEN** the app loads and parses `libraries.json`
 - **THEN** it renders a map centered on Los Angeles with a marker for each library
 
+#### Scenario: User clicks a map marker
+- **WHEN** the user clicks on a library marker on the map
+- **THEN** the map displays the popup with the library name
+- **AND** the branch list automatically scrolls so the corresponding library card is visible
+- **AND** the library card is briefly visually highlighted
+
 ### Requirement: Sync Map with Filters
 The map markers SHALL dynamically update to reflect the currently filtered list of libraries.
 
