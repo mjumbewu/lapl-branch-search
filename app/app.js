@@ -3,6 +3,8 @@ let filteredLibraries = [];
 let selectedDays = new Set();
 let selectedAmenities = new Set();
 let allAvailableAmenities = new Set();
+let map;
+let markers = [];
 
 const DOM = {
     loading: document.getElementById('loading'),
@@ -18,6 +20,14 @@ const DOM = {
 
 async function init() {
     setupEventListeners();
+    
+    map = new maplibregl.Map({
+        container: 'map',
+        style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
+        center: [-118.2437, 34.0522],
+        zoom: 10
+    });
+
     try {
         const response = await fetch('libraries.json');
         allLibraries = await response.json();
@@ -121,6 +131,26 @@ function applyFilters() {
     });
 
     renderList();
+    renderMapMarkers();
+}
+
+function renderMapMarkers() {
+    markers.forEach(m => m.remove());
+    markers = [];
+
+    filteredLibraries.forEach(lib => {
+        if (lib.lat && lib.lng) {
+            const popup = new maplibregl.Popup({ offset: 25 })
+                .setText(lib.name);
+                
+            const marker = new maplibregl.Marker()
+                .setLngLat([lib.lng, lib.lat])
+                .setPopup(popup)
+                .addTo(map);
+                
+            markers.push(marker);
+        }
+    });
 }
 
 function getTodayStr() {

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LAPL Branch Finder</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -45,11 +47,16 @@
     </div>
 
     <main>
-        <div id="loading" class="state-message">Loading branches...</div>
-        <div id="no-results" class="state-message hidden">No branches match your filters.</div>
-        <ul id="branch-list">
-            <!-- Branch items dynamically populated -->
-        </ul>
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
+        <div id="list-container">
+            <div id="loading" class="state-message">Loading branches...</div>
+            <div id="no-results" class="state-message hidden">No branches match your filters.</div>
+            <ul id="branch-list">
+                <!-- Branch items dynamically populated -->
+            </ul>
+        </div>
     </main>
 
     <script src="app.js"></script>
