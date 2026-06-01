@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LAPL Branch Finder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>LAPL Finder</h1>
+            <button id="toggle-filters" class="icon-button" aria-label="Toggle filters">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+            </button>
+        </div>
+    </header>
+
+    <div id="filter-panel" class="hidden">
+        <div class="filter-group">
+            <h3>Open On</h3>
+            <div class="pill-group" id="day-filters">
+                <button class="pill" data-day="Mon">Mon</button>
+                <button class="pill" data-day="Tue">Tue</button>
+                <button class="pill" data-day="Wed">Wed</button>
+                <button class="pill" data-day="Thu">Thu</button>
+                <button class="pill" data-day="Fri">Fri</button>
+                <button class="pill" data-day="Sat">Sat</button>
+                <button class="pill" data-day="Sun">Sun</button>
+            </div>
+        </div>
+        
+        <div class="filter-group">
+            <h3>Amenities</h3>
+            <div class="pill-group" id="amenity-filters">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+
+        <div class="filter-actions">
+            <button id="clear-filters" class="secondary-btn">Clear</button>
+            <button id="apply-filters" class="primary-btn">Apply</button>
+        </div>
+    </div>
+
+    <main>
+        <div id="loading" class="state-message">Loading branches...</div>
+        <div id="no-results" class="state-message hidden">No branches match your filters.</div>
+        <ul id="branch-list">
+            <!-- Branch items dynamically populated -->
+        </ul>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
