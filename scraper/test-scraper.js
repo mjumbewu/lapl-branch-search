@@ -1,4 +1,4 @@
-const cheerio = require('cheerio');
+import * as cheerio from 'cheerio';
 fetch('https://www.lapl.org/branches')
   .then(res => res.text())
   .then(html => {

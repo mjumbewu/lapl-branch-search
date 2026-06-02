@@ -1,6 +1,10 @@
-const cheerio = require('cheerio');
-const fs = require('fs');
-const path = require('path');
+import * as cheerio from 'cheerio';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const LAPL_URL = 'https://www.lapl.org/branches';
 const SOCRATA_URL = 'https://data.lacity.org/resource/a4nt-4gca.json?$limit=200';
