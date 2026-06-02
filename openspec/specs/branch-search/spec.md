@@ -13,6 +13,11 @@ The system SHALL allow users to filter the branch list by selected amenities (e.
 - **THEN** the list updates to only show branches that have Wi-Fi in their resources list
 - **AND** the map updates to show only the matching branches
 
+#### Scenario: User clicks the address on a branch card
+- **WHEN** the user clicks directly on the branch address text
+- **THEN** the system triggers the OS's default map/address interaction (e.g., launching an external map)
+- **AND** the app does NOT center the internal map on the branch marker
+
 ### Requirement: Filter by Open Status
 The system SHALL allow users to filter branches based on whether they are open on specific days.
 

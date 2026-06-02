@@ -220,6 +220,8 @@ ul#branch-list {
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--border);
     transition: transform 0.2s, box-shadow 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .branch-card:hover {
@@ -273,6 +275,8 @@ ul#branch-list {
     font-size: 0.875rem;
     color: var(--text-muted);
     margin: 0 0 1rem 0;
+    user-select: text;
+    -webkit-user-select: text;
 }
 
 .branch-hours {

@@ -186,7 +186,9 @@ function renderList() {
         li.className = 'branch-card';
         li.id = `branch-card-${lib.name.replace(/\W+/g, '-')}`;
         
-        li.addEventListener('click', () => {
+        li.addEventListener('click', (e) => {
+            if (e.target.closest('.branch-address')) return;
+            
             if (lib.lat && lib.lng) {
                 map.flyTo({ center: [lib.lng, lib.lat], zoom: 14 });
                 const marker = markerMap.get(lib.name);
